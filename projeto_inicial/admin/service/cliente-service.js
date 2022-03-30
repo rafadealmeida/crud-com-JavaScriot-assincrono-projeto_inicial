@@ -30,15 +30,23 @@ const listaCliente= () =>{
         http.open('GET','http://localhost:3000/profile');
 
         http.onload = () =>{
-        const data = JSON.parse(http.response);
-        console.log(data);
-        data.forEach(elemento =>{
-        tabela.appendChild(criarNovaLinha(elemento.nome, elemento.email));
-        })
         
+           if(http.status>= 400){
+               reject(JSON.parse(http.response));
+           }
+           else{
+               resolve(JSON.parse(http.response)); 
+           }
+                
+        }
         http.send();
-            }
     })
-    
+    return promise;   
 }
 
+listaCliente()
+.then(data =>{
+     data.forEach(elemento =>{
+        tabela.appendChild(criarNovaLinha(elemento.nome, elemento.email));
+        })
+});
