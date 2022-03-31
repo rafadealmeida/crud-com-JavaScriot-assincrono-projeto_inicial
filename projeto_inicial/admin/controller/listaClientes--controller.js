@@ -1,4 +1,4 @@
-import { clienteService } from "../admin/service/cliente-service.js";
+import { clienteService } from "../service/cliente-service";
 
 
 const criarNovaLinha = (nome,email) => {
@@ -33,3 +33,4 @@ clienteService.listaCliente()
         tabela.appendChild(criarNovaLinha(elemento.nome, elemento.email));
         })
 });
+
